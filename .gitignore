@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+results/
+.ipynb_checkpoints/
+.DS_Store
+analysis/*.png
+results_*/
+*.html
