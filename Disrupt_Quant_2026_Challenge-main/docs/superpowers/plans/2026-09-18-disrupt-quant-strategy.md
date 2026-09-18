@@ -429,8 +429,6 @@ Sam explains: why we split in time rather than shuffle, what the tune window is 
 ```
 Expected: three sets of metrics (1x from Task 4, 1.5x, 2x). Record `sharpe`, `total_return`, `transaction_costs` for each. If Sharpe drops below zero at 1.5x, raise `REBALANCE_EVERY` (trade less) and redo Task 5.
 
-Sam's optional refinement (2026-09-18), only if costs bite: lean on cheap names. Divide each position's inverse-vol weight by `sqrt(spread_bps)` before normalizing, so wide-spread names get smaller positions. One line of code, one sentence to explain. Compare costs and Sharpe with and without it.
-
 - [ ] **Step 2: Write the sensitivity script**
 
 ```python
