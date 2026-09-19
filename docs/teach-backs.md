@@ -14,5 +14,12 @@ At the close of each day the backtester takes that day's data and asks the strat
 
 Corrections noted: drawdown is peak-to-trough loss, not caused by volatility; 2025 is the hidden period that is actually graded.
 
+## 2. Signal scan
+
+Sam's explanation (2026-09-18):
+A signal is a column each stock has every day, like the carry score. The rank IC is the grade that column gets: how well sorting the stocks by that column is associated with the next day's returns. We tested carry by splitting stocks into four buckets by carry each day: the lowest-carry bucket earned about -1.7 bps the next day and the highest-carry bucket earned about +4.1 bps, a clean staircase. The daily rank IC for carry averaged 0.024 and was positive on 54% of days, which is a small edge but real, not noise.
+
+Correction noted: Sam first called the carry column itself the "information coefficient"; fixed to carry = the column, IC = the measurement of it.
+
 ## Ideas raised by Sam
 - 2026-09-18: can the spread be exploited? Answer: no, it is only a cost here. Sam chose "lean on cheap names" (down-weight wide-spread stocks) as an optional cost refinement for the stress step.
