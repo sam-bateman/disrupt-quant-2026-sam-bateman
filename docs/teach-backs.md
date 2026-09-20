@@ -21,5 +21,28 @@ A signal is a column each stock has every day, like the carry score. The rank IC
 
 Correction noted: Sam first called the carry column itself the "information coefficient"; fixed to carry = the column, IC = the measurement of it.
 
+## 3. Hypothesis
+See docs/hypothesis.md (Sam's words, verbatim, 2026-09-19).
+
+## 4. Strategy
+
+Sam's explanation (2026-09-20):
+A carry number becomes a position when it is one of the 2 highest or 2 lowest in its sector: long the highest, short the lowest, rebalanced every 5 days. Doing this inside each sector keeps the book net neutral (and, added after correction, keeps each sector net zero so there is no accidental sector bet). The calmer (lower-volatility) stock is favored because it makes all stocks contribute to risk equally; without it the jumpiest stock would dominate the signals of the other stocks.
+
+Also discussed: why weekly not daily (daily doubles costs, Sharpe 1.09 vs 1.34); drift trimming on holding days is the engine's rule and costs a rounding error; carry buckets are sticky for weeks but every stock cycles through high and low phases, so we re-rank rather than buy and hold.
+
 ## Ideas raised by Sam
 - 2026-09-18: can the spread be exploited? Answer: no, it is only a cost here. Sam chose "lean on cheap names" (down-weight wide-spread stocks) as an optional cost refinement for the stress step.
+
+## 5. Split trials (2026-09-20)
+No parameters were fitted. Settings (carry, top2/bottom2 per sector, inverse-vol, rebalance 5, gross 1.0) were the plan defaults.
+One check was run on the full development set before this split (rebalance every 1/5/10/20 days: Sharpe 1.09/1.34/1.28/1.24); the default of 5 was kept. Disclose in the note as a mild look at the hold-out window.
+
+| | tune 2021-2022 | holdout 2023-Jun2024 |
+|---|---|---|
+| Sharpe | 0.89 | 2.00 |
+| annual return | 3.5% | 7.5% |
+| annual vol | 4.0% | 3.6% |
+| max drawdown | -3.2% | -2.5% |
+| hit rate | 50.4% | 56.2% |
+| costs | 2.1% | 1.2% |
