@@ -15,6 +15,7 @@ SIGN = 1                  # +1: buy high values of SIGNAL; -1: buy low values
 REBALANCE_EVERY = 5       # sessions between rebalances
 GROSS = 1.0               # sum of absolute weights at execution
 PER_SIDE = 2              # longs and shorts per sector (4 assets per sector)
+SPREAD_TILT = False       # True: also shrink positions in wide-spread (expensive) names
 
 
 def _rebalance_rows(history, current_date):
@@ -35,8 +36,10 @@ def _weights(rows):
             continue
         longs, shorts = grp.head(PER_SIDE), grp.tail(PER_SIDE)
         for side, sign in ((longs, 1.0), (shorts, -1.0)):
-            inv_vol = 1.0 / np.maximum(side.realized_vol_20d.to_numpy(), 1e-3)
-            w = sign * side_budget * inv_vol / inv_vol.sum()
+            size = 1.0 / np.maximum(side.realized_vol_20d.to_numpy(), 1e-3)
+            if SPREAD_TILT:
+                size = size / np.sqrt(np.maximum(side.spread_bps.to_numpy(), 1.0))
+            w = sign * side_budget * size / size.sum()
             weights.update(zip(side.asset_id, map(float, w)))
     return weights
 

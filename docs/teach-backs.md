@@ -46,3 +46,33 @@ One check was run on the full development set before this split (rebalance every
 | max drawdown | -3.2% | -2.5% |
 | hit rate | 50.4% | 56.2% |
 | costs | 2.1% | 1.2% |
+
+Sam's explanation (2026-09-20):
+The split shows the strategy isn't overfit to the training data: the first period is worse than the second, which shows it is not just built for the period we trained on.
+Corrections noted: "built for any market" is too strong, say "held out of sample within development"; time split rather than shuffle because shuffled days leak the future through rolling features and adjacent days, and real trading only moves forward in time.
+
+## 6. Stress and risk (2026-09-20, development)
+
+Cost stress (decisions fixed, costs scaled):
+| cost multiplier | Sharpe | total return | costs | max drawdown |
+|---|---|---|---|---|
+| 1.0x | 1.34 | 20.2% | 3.2% | -3.2% |
+| 1.5x | 1.23 | 18.3% | 4.7% | -3.3% |
+| 2.0x | 1.11 | 16.5% | 6.3% | -3.3% |
+
+Sensitivity (one setting at a time, others at default):
+| setting | value | Sharpe | total return | max dd | costs |
+|---|---|---|---|---|---|
+| rebalance every | 3 | 1.17 | 17.3% | -4.3% | 3.8% |
+| rebalance every | 5 (default) | 1.34 | 20.2% | -3.2% | 3.2% |
+| rebalance every | 10 | 1.28 | 19.1% | -2.6% | 2.3% |
+| gross | 0.6 | 1.35 | 11.8% | -1.9% | 1.8% |
+| gross | 1.0 (default) | 1.34 | 20.2% | -3.2% | 3.2% |
+| gross | 1.4 | 1.34 | 29.1% | -4.4% | 4.6% |
+| per side | 1 | 1.14 | 23.8% | -6.1% | 3.2% |
+| per side | 2 (default) | 1.34 | 20.2% | -3.2% | 3.2% |
+Sharpe keeps its sign and stays above 1.1 for every neighbour. Gross is a pure dial: return and drawdown scale together, Sharpe unchanged.
+
+Sam's cheap-names tilt (shrink positions by 1/sqrt(spread_bps)): costs fell 3.15% -> 2.68%, but Sharpe fell 1.34 -> 1.17 and return 5.2% -> 4.7%. The wide-spread names carry part of the edge, so under-weighting them loses more than it saves. Rejected; flag kept in code as SPREAD_TILT = False for reproducibility.
+
+Monthly: 29 of 42 months positive; worst month -1.12% (Feb 2023); best +2.17% (Sep 2023). All six sectors contributed positively (Financials most, 6.2%; Industrials least, 1.3%). Best asset A08 +3.9%, worst A22 -3.6%: no single name dominates.
