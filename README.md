@@ -41,16 +41,15 @@ Sophisticated machine-learning models are not inherently preferred. A simple str
 
 Your final ranking will not be determined solely by P&L or Sharpe ratio. We care about how you think, test hypotheses, manage risk, and support conclusions with evidence.
 
-## Your submission README
+## Submission
 
-Replace or extend this section:
-
-- Candidate name:
-- Strategy name and 2–3 sentence summary:
-- Reproduction command and environment:
-- Development and validation metrics, with dates:
-- Important assumptions and known limitations:
-- AI tools used:
-- How they were used:
+- **Candidate name:** Sam Bateman
+- **Strategy name and summary:** Sector-neutral carry. Every fifth session, rank the four assets in each sector by `carry_score`; long the top two, short the bottom two, sized by inverse 20-day volatility, dollar-neutral per sector and overall, 100% gross. Chosen because carry was the only provided signal with a consistent cross-sectional edge that survives transaction costs.
+- **Reproduction command and environment:** Python 3.13 with the pinned `requirements.txt`. `python starter/backtester.py` (development), `python starter/backtester.py --split validation` (validation), `python starter/backtester.py --split validation --cost-multiplier 1.5`. Research scripts: `python analysis/scan_signals.py`, `python analysis/run_split.py`, `python analysis/sensitivity.py`, `python analysis/monthly.py results/development`. Sanity check: `python tests/check_strategy.py`.
+- **Development metrics (2021-01-04 to 2024-06-28, run 2026-09-20):** Sharpe 1.34, total return +20.2%, annualized return 5.2%, annualized volatility 3.9%, max drawdown -3.2%, turnover 14.5x/yr, costs 3.2% of NAV. Internal split: 2021–2022 Sharpe 0.89, 2023–Jun 2024 Sharpe 2.00.
+- **Validation metrics (2024-07-01 to 2024-12-31, run once on 2026-09-20 after freezing at git tag `frozen-before-validation`):** Sharpe -1.75, total return -3.6%, max drawdown -5.7%, costs 0.41%. At 1.5x costs: Sharpe -1.86, total return -3.8%. No changes were made to the strategy after validation. See `research_note.pdf` for the diagnosis.
+- **Important assumptions and known limitations:** Cash earns zero and shorts carry no borrow cost, both simplifications that flatter a 50% short book. The carry mechanism is not observable in synthetic data; the edge is small (about 5 bps/day gross) and faded to zero in the second half of 2024. `strategy.py` is stateless and reads no files.
+- **AI tools used:** Claude Code (Anthropic).
+- **How they were used:** Claude wrote the Python scripts (`strategy.py`, `analysis/*`, `tests/*`), ran the backtests, and drafted the README and research note from the recorded results. The candidate set the plan, made every strategy decision (signal choice, construction, rebalance cadence, what to test and reject, keeping the frozen strategy after validation), and edited the note. Working notes and the candidate's own explanations of each step are in `docs/`.
 
 Only documentation, the example, and market observations are provided. Any explanatory research examples in `starter/` demonstrate the API; they are not trading recommendations.

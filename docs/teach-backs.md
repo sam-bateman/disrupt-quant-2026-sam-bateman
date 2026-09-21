@@ -100,3 +100,8 @@ Validation July-December 2024, 132 sessions:
 - Monthly: +1.69, -0.76, -2.15, -0.87, +0.58, -2.08. 2 of 6 positive.
 - Sector: 5 of 6 negative (Energy -1.5%, Financials -1.3%); only Industrials positive (+0.6%).
 - Costs are not the cause (0.4% over six months). The gross return was negative.
+
+## Post-validation diagnostic (2026-09-20, one pass, no strategy change)
+Carry rank IC with next-day return by period: 2021-22 +0.013 (t 1.4), 2023 +0.047 (t 3.6), H1-2024 +0.024 (t 1.2), validation -0.008 (t -0.5).
+Within-sector top2-minus-bottom2 carry, no costs: +3.1, +6.8, +4.3, -3.5 bps/day. The signal itself faded to zero in H2 2024; construction and costs are not the cause.
+Reversal signals got stronger in validation (return_1d IC -0.112, t -6.4) but are untradable after costs: 1-day reversal on development all windows negative (Sharpe -2.6, costs 55% over 3.5 years, turnover 271x/yr); 5-day reversal also negative in every window. No alternative signal survives costs. Decision: keep the frozen strategy, disclose the loss.
