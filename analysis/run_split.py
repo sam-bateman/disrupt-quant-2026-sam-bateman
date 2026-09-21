@@ -1,8 +1,5 @@
 """Run the strategy on two non-overlapping development windows.
-
-2021-2022 is where we are allowed to tune. 2023 to June 2024 is an internal
-hold-out: look, but do not tune to it.
-"""
+2021-2022 is where we are allowed to tune. 2023 to June 2024 is an internal hold-out."""
 from pathlib import Path
 import sys
 import pandas as pd

@@ -10,7 +10,7 @@ from starter.backtester import load_data, simulate  # noqa: E402
 from starter.metrics import summarize  # noqa: E402
 import strategy  # noqa: E402
 
-TRIALS = [('REBALANCE_EVERY', [3, 5, 10]), ('GROSS', [0.6, 1.0, 1.4]), ('PER_SIDE', [1, 2])]
+TRIALS = [('REBALANCE_EVERY', [1, 3, 5, 10, 20]), ('GROSS', [0.6, 1.0, 1.4]), ('PER_SIDE', [1, 2])]
 KEEP = ['sharpe', 'total_return', 'maximum_drawdown', 'annualized_turnover', 'transaction_costs']
 
 
