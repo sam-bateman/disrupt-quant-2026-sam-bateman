@@ -92,3 +92,11 @@ Development 2021-01 to 2024-06, run 2026-09-20, settings: carry_score, top2/bott
 - Sensitivity: rebalance 1/3/5/10/20 -> Sharpe 1.09/1.17/1.34/1.28/1.24; gross 0.6/1.0/1.4 -> 1.35/1.34/1.34; per side 1/2 -> 1.14/1.34. No setting flips the sign.
 - Monthly: 29 of 42 months positive; worst month -1.12%. All six sectors contribute positively (Financials largest at 6.2% of NAV, Industrials smallest 1.3%). Largest single asset contribution 3.9% of NAV, worst -3.6%.
 - Tested and rejected: divide weights by sqrt(spread_bps). Costs -15% but Sharpe 1.34 -> 1.17 (tune 0.89 -> 0.57). Not worth it at 0.9%/yr costs.
+
+## 7. Validation (run once, 2026-09-20, strategy frozen at git tag frozen-before-validation, commit 917c877)
+Validation July-December 2024, 132 sessions:
+- 1x costs: total return -3.6%, annualized -6.7%, annual vol 3.9%, Sharpe -1.75, max DD -5.7%, hit rate 49.2%, turnover 14.7x/yr, costs 0.41%
+- 1.5x costs: total return -3.8%, Sharpe -1.86, costs 0.62%
+- Monthly: +1.69, -0.76, -2.15, -0.87, +0.58, -2.08. 2 of 6 positive.
+- Sector: 5 of 6 negative (Energy -1.5%, Financials -1.3%); only Industrials positive (+0.6%).
+- Costs are not the cause (0.4% over six months). The gross return was negative.
