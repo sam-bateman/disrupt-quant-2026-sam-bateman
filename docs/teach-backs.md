@@ -76,3 +76,10 @@ Sharpe keeps its sign and stays above 1.1 for every neighbour. Gross is a pure d
 Sam's cheap-names tilt (shrink positions by 1/sqrt(spread_bps)): costs fell 3.15% -> 2.68%, but Sharpe fell 1.34 -> 1.17 and return 5.2% -> 4.7%. The wide-spread names carry part of the edge, so under-weighting them loses more than it saves. Rejected; flag kept in code as SPREAD_TILT = False for reproducibility.
 
 Monthly: 29 of 42 months positive; worst month -1.12% (Feb 2023); best +2.17% (Sep 2023). All six sectors contributed positively (Financials most, 6.2%; Industrials least, 1.3%). Best asset A08 +3.9%, worst A22 -3.6%: no single name dominates.
+
+## 2. Signal scan (Sam, 2026-09-18)
+Carry score is a column each stock has every day. We tested it: the lowest carry bucket returned -1.7 bps next day and the highest +4.1 bps. Reinforced by a daily rank IC mean of 0.024, positive on 54% of days: a small edge but real, not noise.
+Correction: carry score is the signal (the column); rank IC is the grade the signal received for how well sorting by it sorted next-day returns.
+
+## 3. Hypothesis
+Chosen by Claude's recommendation on 2026-09-20 under time pressure; Sam to confirm. See docs/hypothesis.md.
