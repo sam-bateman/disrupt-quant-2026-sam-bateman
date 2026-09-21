@@ -83,3 +83,12 @@ Correction: carry score is the signal (the column); rank IC is the grade the sig
 
 ## 3. Hypothesis
 Chosen by Claude's recommendation on 2026-09-20 under time pressure; Sam to confirm. See docs/hypothesis.md.
+
+## 4-6. Build, split, stress (Claude, 2026-09-20, speed mode)
+Development 2021-01 to 2024-06, run 2026-09-20, settings: carry_score, top2/bottom2 per sector, inverse-vol, gross 1.0, rebalance every 5 sessions.
+- Dev all: Sharpe 1.34, total return 20.2%, annual return 5.2%, annual vol 3.9%, max DD -3.2%, hit rate 52.9%, turnover 14.5x/yr, costs 3.2% total
+- Tune 2021-2022: Sharpe 0.89 | Hold-out 2023-Jun 2024: Sharpe 2.00 (hold-out not tuned to; 5-session cadence was the plan default, chosen before any results)
+- Costs 1x / 1.5x / 2x: Sharpe 1.34 / 1.23 / 1.11; total costs 3.2% / 4.7% / 6.3%
+- Sensitivity: rebalance 1/3/5/10/20 -> Sharpe 1.09/1.17/1.34/1.28/1.24; gross 0.6/1.0/1.4 -> 1.35/1.34/1.34; per side 1/2 -> 1.14/1.34. No setting flips the sign.
+- Monthly: 29 of 42 months positive; worst month -1.12%. All six sectors contribute positively (Financials largest at 6.2% of NAV, Industrials smallest 1.3%). Largest single asset contribution 3.9% of NAV, worst -3.6%.
+- Tested and rejected: divide weights by sqrt(spread_bps). Costs -15% but Sharpe 1.34 -> 1.17 (tune 0.89 -> 0.57). Not worth it at 0.9%/yr costs.
