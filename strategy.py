@@ -10,7 +10,7 @@ date from the history it is given.
 import numpy as np
 import pandas as pd
 
-SIGNAL = 'carry_score'    # column used to rank assets (see docs/hypothesis.md)
+SIGNAL = 'carry_score'    # column used to rank assets (carry was the only signal that survived costs)
 SIGN = 1                  # +1: buy high values of SIGNAL; -1: buy low values
 REBALANCE_EVERY = 5       # sessions between rebalances
 GROSS = 1.0               # sum of absolute weights at execution
